@@ -2,4 +2,4 @@
 
 from podsog import gui
 
-main()
+gui.main()

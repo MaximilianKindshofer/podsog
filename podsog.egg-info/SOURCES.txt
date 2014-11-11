@@ -1,0 +1,8 @@
+bin/podsog
+podsog/__init__.py
+podsog/gui.py
+podsog.egg-info/PKG-INFO
+podsog.egg-info/SOURCES.txt
+podsog.egg-info/dependency_links.txt
+podsog.egg-info/requires.txt
+podsog.egg-info/top_level.txt
