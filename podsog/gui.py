@@ -1,4 +1,4 @@
-from PySide import QtGui
+from PySide import QtCore, QtGui, QtWebKit
 import functions
 import sys
 
@@ -6,7 +6,7 @@ class Podsog(QtGui.QMainWindow):
 
     def __init__(self):
         super(Podsog, self).__init__()
-        self.central_widget = QtGui.QStackedWidget()
+        self.central_widget = QtGui.QFrame()
         self.setCentralWidget(self.central_widget)
         self.initUI()
 
@@ -45,14 +45,24 @@ class Podsog(QtGui.QMainWindow):
         
 
         #Left Side with Podcasts
-        self.podcastList = QtGui.QListWidget(self)
+        self.podcastList = QtGui.QListWidget(self.central_widget)
         self.podcastList.SingleSelection
         
+        #Right Side with Episodes
+        self.episodeList = QtGui.QListWidget(self.central_widget)
+        
+        #Right Bottom with Shownotes / Page
+        self.webBox = QtWebKit.QWebView(self.central_widget)
+        self.webBox.load(QtCore.QUrl("http://www.reddit.com"))
+
+
 
         """Gridlayout"""
-        self.grid = QtGui.QGridLayout()
-        self.grid.addWidget(self.podcastList, 1, 1, 1, 2)
-        
+        self.grid = QtGui.QGridLayout(self.central_widget)
+        self.grid.addWidget(self.podcastList, 0 ,0, 2, 1)
+        self.grid.addWidget(QtGui.QLabel(''), 0, 1, 2, 1)
+        self.grid.addWidget(self.episodeList, 0, 2, 1, 1)
+        self.grid.addWidget(self.webBox, 1, 2, 1, 1)
         self.setLayout(self.grid)
         self.show()
 
