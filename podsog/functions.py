@@ -6,3 +6,6 @@ def add():
 
 def remove():
     pass
+
+def setdlfolder(folder):
+    print(folder)
