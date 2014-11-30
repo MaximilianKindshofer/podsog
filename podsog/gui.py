@@ -52,20 +52,33 @@ class Podsog(QtGui.QMainWindow):
         self.episodeList = QtGui.QListWidget(self.central_widget)
         
         #Right Bottom with Shownotes / Page
-        self.webBox = QtWebKit.QWebView(self.central_widget)
-        self.webBox.load(QtCore.QUrl("http://www.reddit.com"))
+        self.webBox = QtGui.QListWidget(self.central_widget)
+        
+        #self.webBox.load(QtCore.QUrl("http://www.reddit.com"))
 
-
+        #Bottom Box
+        self.playButton = QtGui.QToolButton(self.central_widget)
+        self.playButton.setIcon(QtGui.QPixmap('play.svg'))
+        self.playButton.setIconSize(QtCore.QSize(28, 28))
+        self.playButton.setCheckable(True)
+        self.playButton.clicked.connect(self.helperplay)
+        
 
         """Gridlayout"""
         self.grid = QtGui.QGridLayout(self.central_widget)
         self.grid.addWidget(self.podcastList, 0 ,0, 2, 1)
-        self.grid.addWidget(QtGui.QLabel(''), 0, 1, 2, 1)
-        self.grid.addWidget(self.episodeList, 0, 2, 1, 1)
-        self.grid.addWidget(self.webBox, 1, 2, 1, 1)
+
+        self.grid.addWidget(self.episodeList, 0, 1, 1, 1)
+        self.grid.addWidget(self.webBox, 1, 1, 1, 1)
+        self.grid.addWidget(self.playButton, 2, 0, 1, 1)
         self.setLayout(self.grid)
         self.show()
 
+    def helperplay(self):
+        if self.playButton.isChecked():
+            self.playButton.setIcon(QtGui.QPixmap('pause.png'))
+        else:
+            self.playButton.setIcon(QtGui.QPixmap('play.svg'))
 
 def main():
 
