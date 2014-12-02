@@ -1,10 +1,10 @@
 def refresh():
     pass
 
-def add():
+def add(name, feed):
     pass
 
-def remove():
+def remove(podcast):
     pass
 
 def setdlfolder(folder):
